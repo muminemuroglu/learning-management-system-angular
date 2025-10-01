@@ -1,3 +1,41 @@
+<app-user-profile></app-user-profile>
 
 
+<div class="container mt-4">
+  <h2>Mevcut Kurslarım</h2>
 
+  @if(coursesArr.length === 0) {
+    <p>Henüz kursunuz yok. Lütfen yeni bir kurs ekleyin.</p>
+  } @else {
+        <div class="row">
+          <!--Kursları liste olarak göstereceğimiz yer-->
+          @for (course of coursesArr; track course.id) {
+            <ul class="list-group">
+                <li class="list-group-item">{{ course.title }}
+                <button (click)="deleteCourse(course.id)" class="btn btn-secondary float-end me-2">Kursu Sil</button>
+                <button class="btn btn-primary float-end" [routerLink]="['/course-detail', course.id]">Güncelle</button>
+                
+                </li>
+                <li class="list-group-item" style="color: cadetblue;">{{ course.description }}</li>
+            </ul>
+              }
+        </div>
+
+        <div class="mt-4">
+          <!-- Kurs Ekle Butonu -->
+            <button (click)="showDropdown = !showDropdown" class="btn btn-primary">Kurs Ekle</button>
+
+      <!-- Dropdown Paneli -->
+          @if(showDropdown){
+            <div class="dropdown-panel mt-2 p-4 border rounded bg-light">
+            <input [(ngModel)]="newCourseTitle" placeholder="Kurs Başlığı" class="m-2" />
+            <input [(ngModel)]="newCourseDescription" placeholder="Kurs Açıklaması" class="m-2" />
+            <button (click)="addCourse()" class="btn btn-success m-2">Kaydet</button>
+            <button (click)="showDropdown = false" class="btn btn-secondary">İptal</button>
+            </div>}
+
+          </div>
+  }
+
+
+ 
