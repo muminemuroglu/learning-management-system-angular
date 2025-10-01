@@ -1,0 +1,16 @@
+@if (user) {
+  <div class="bg-white p-4 rounded shadow space-y-4">
+    <h3 class="text-lg font-semibold">👤 Kullanıcı Bilgileri</h3>
+
+    <label class="block">Ad:</label>
+    <input type="text" [(ngModel)]="updatedName" class="border p-2 rounded w-full" />
+
+    <label class="block">Email:</label>
+    <input type="email" [(ngModel)]="updatedEmail" class="border p-2 rounded w-full" />
+    <label class="block">Şifre:</label>
+    <input type="password" [(ngModel)]="updatedPassword" class="border p-2 rounded w-full" />
+    <button (click)="updateUser()" class="bg-blue-500 text-white px-4 py-2 rounded">Güncelle</button>
+  </div>
+} @else {
+  <p class="text-gray-500">Kullanıcı bilgileri yükleniyor...</p>
+}

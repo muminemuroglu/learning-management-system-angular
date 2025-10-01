@@ -1,0 +1,6 @@
+<h2>Courses</h2>
+<div class="row">
+    @for (item of coursesArr; track $index) {
+        <app-course-item [item]="item" class="col-sm-4"> </app-course-item>
+    }
+</div>

@@ -1,0 +1,176 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "name": "Ahmet Yılmaz",
+      "email": "ahmet@example.com",
+      "password": "12345",
+      "role": "student"
+    },
+    {
+      "id": "2",
+      "name": "Ayşe Demir",
+      "email": "ayse@mail.com",
+      "password": "abcd",
+      "role": "instructor"
+    },
+    {
+      "id": "c498",
+      "name": "Zeynep Sarıca",
+      "email": "zeynep@mail.com",
+      "password": "1234!Zeynep",
+      "role": "student"
+    },
+    {
+      "id": "2dc2",
+      "name": "Fatma Sarıca",
+      "email": "fatma@mail.com",
+      "password": "12345fatma",
+      "role": "student"
+    },
+    {
+      "id": "8192",
+      "name": "Mete Can",
+      "email": "mete@mail.com",
+      "password": "1234!Mete",
+      "role": "student"
+    }
+  ],
+  "courses": [
+    {
+      "id": "1",
+      "title": "Angular Başlangıç",
+      "description": "Temel Angular konuları",
+      "instructorId": 2
+    },
+    {
+      "id": "2",
+      "title": "React Temelleri",
+      "description": "React ile ön yüz geliştirmeye giriş",
+      "instructorId": 2
+    },
+    {
+      "id": "3",
+      "title": "Vue.js ile Modern Web",
+      "description": "Vue.js temel ve ileri konular",
+      "instructorId": 4
+    },
+    {
+      "id": "4",
+      "title": "Node.js API Geliştirme",
+      "description": "Backend API geliştirme Node.js ile",
+      "instructorId": 5
+    },
+    {
+      "id": "5",
+      "title": "TypeScript ile Güçlü Kodlama",
+      "description": "TypeScript kullanarak güvenli ve tipli kod yazma",
+      "instructorId": 2
+    },
+    {
+      "id": "6",
+      "title": "Python ile Veri Analizi",
+      "description": "Pandas ve NumPy kullanarak veri analizi",
+      "instructorId": 6
+    },
+    {
+      "id": "7",
+      "title": "Java ile Nesne Yönelimli Programlama",
+      "description": "Java OOP kavramları ve uygulamaları",
+      "instructorId": 7
+    },
+    {
+      "id": "8",
+      "title": "C# ve .NET Core",
+      "description": "C# ile modern uygulama geliştirme",
+      "instructorId": 8
+    },
+    {
+      "id": "9",
+      "title": "SQL ve Veritabanı Yönetimi",
+      "description": "SQL sorguları ve veri tabanı tasarımı",
+      "instructorId": 9
+    },
+    {
+      "id": "10",
+      "title": "Frontend Framework Karşılaştırmaları",
+      "description": "Angular, React, Vue.js arasındaki farklar",
+      "instructorId": 3
+    },
+    {
+      "id": "11",
+      "title": "RESTful API Tasarımı",
+      "description": "REST standartlarına uygun API geliştirme",
+      "instructorId": 5
+    },
+    {
+      "id": "12",
+      "title": "DevOps Temelleri",
+      "description": "CI/CD ve bulut ortamlarında uygulama dağıtımı",
+      "instructorId": 10
+    },
+    {
+      "id": "70c9",
+      "title": "Matematik",
+      "description": "Matematik 1.sınıf",
+      "instructorId": 1,
+      "lessons": []
+    },
+    {
+      "id": "1576",
+      "title": "Türkçe",
+      "description": "Türkçe 1. Sınıf",
+      "instructorId": 1,
+      "lessons": []
+    },
+    {
+      "id": "7bfa",
+      "title": "Fen Bilgisi",
+      "description": "Fizik kuralları",
+      "instructorId": 1,
+      "lessons": []
+    }
+  ],
+  "lessons": [
+    {
+      "id": "1",
+      "courseId": 1,
+      "title": "Components Giriş",
+      "videoUrl": "https://example.com/video1.mp4"
+    },
+    {
+      "id": "b867",
+      "title": "Sayılar",
+      "content": "Doğal Sayılar",
+      "courseId": "70c9"
+    },
+    {
+      "id": "d8bd",
+      "title": "Yazım Kurallları",
+      "content": "Noktalama İşarteleri",
+      "courseId": "1576"
+    },
+    {
+      "id": "62dc",
+      "title": "Deyimler ve Atasözü",
+      "content": "Deyimler",
+      "courseId": "1576"
+    }
+  ],
+  "enrollments": [
+    {
+      "id": "1",
+      "userId": 1,
+      "courseId": 1
+    }
+  ],
+  "comments": [
+    {
+      "id": "1",
+      "courseId": 1,
+      "userId": 1,
+      "text": "Çok faydalı bir ders!",
+      "date": "2025-08-25"
+    }
+  ]
+}

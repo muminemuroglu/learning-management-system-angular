@@ -1,0 +1,39 @@
+<div class="course-detail-container p-4 max-w-4xl mx-auto">
+
+  <!-- Kurs Başlığı ve Açıklama -->
+  <h1 class="text-3xl font-bold mb-2">{{course?.title}} </h1>
+  <p class="text-gray-700 mb-4">{{course?.description}}.</p>
+  @if(role=== 'instructor'){
+    <p class="text-sm text-gray-500 mb-6">EğitmenID:{{course?.instructorId}} </p>
+    <button 
+      class="bg-blue-500 text-white px-4 py-2 rounded mb-4 hover:bg-blue-600">
+      Ders Ekle
+    </button>
+  }
+
+  <h2 class="text-2xl font-semibold mb-2">Dersler</h2>
+
+<ul>
+  @if(lessons.length > 0) {
+    @for (lesson of lessons; track lesson.id) {
+      <li class="border p-3 rounded mb-2 flex justify-between items-center">
+        <div>
+          <h3 class="text-lg font-medium">{{ lesson.title }}</h3>
+          <p class="text-gray-600 text-sm">{{ lesson.content }}</p>
+        </div>
+
+        <!-- Eğitmen için butonlar -->
+       @if(role=== 'instructor') {
+          <div class="flex gap-2">
+            <button class="text-yellow-600 hover:underline">Düzenle</button>
+            <button class="text-red-600 hover:underline">Sil</button>
+          </div>
+        }
+      </li>
+    }
+  } @else {
+    <p class="text-gray-500 mt-4">Bu kursta henüz ders eklenmemiş.</p>
+  }
+</ul>
+
+</div>
