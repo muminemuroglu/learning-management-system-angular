@@ -5,22 +5,26 @@ import { lastValueFrom } from 'rxjs';
 
 export const notauthGuard: CanActivateFn = async (route, state) => {
   const authService = inject(AuthService);
-  const stToken = localStorage.getItem('token');
+  const token = localStorage.getItem('token');
 
-  if (stToken) {
+  if (token) {
     try {
-      const res = await lastValueFrom(authService.userProfileSync());
-      if (res) {
+      const user = await lastValueFrom(authService.userProfileSync());
+      if (user) {
+        // Zaten giriş yapmış kullanıcıları home'a yönlendir
         window.location.replace('/home');
         return false;
       }
     } catch (error) {
-      localStorage.removeItem('token'); // token'ı siler
-      localStorage.removeItem('userId'); // userId'yi siler
-      localStorage.removeItem('role');   // role'u siler
-      window.location.reload();          // sayfayı yeniden yükler
+      // Hata durumunda localStorage temizle ve sayfayı yeniden yükle
+      localStorage.removeItem('token');
+      localStorage.removeItem('userId');
+      localStorage.removeItem('userRole');
+      window.location.reload();
       return true;
     }
   }
+
+  // Giriş yapmamış kullanıcılar için izin ver
   return true;
 };

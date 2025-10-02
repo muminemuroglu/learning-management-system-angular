@@ -1,9 +1,9 @@
-export interface ILesson{
-  id:number ;
-  title:string;
-  content:string;
-  courseId:number | string;
-}  
+export interface ILesson {
+  id: string;           // Dersin benzersiz kimliği, string
+  title: string;
+  content: string;
+  courseId: string;     // Hangi kursa ait, string
+}
 
 // Ders ekleme (POST) işlemi için ID'yi dışlayan tip
 export type ILessonCreate = Omit<ILesson, 'id'>;

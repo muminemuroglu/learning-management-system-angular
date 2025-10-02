@@ -13,25 +13,29 @@ import { CourseItemComponent } from '../../components/course-item/course-item.co
 
 export class HomeComponent implements OnInit {
 
-coursesArr: ICourse[] = [];
+  coursesArr: ICourse[] = [];
 
   constructor(private coursesService: CoursesService) { 
     const stToken = localStorage.getItem('token');
     if(!stToken){
-      window.location.replace('/')
+      window.location.replace('/');
     }
   }
 
   ngOnInit(): void {
+    this.loadCourses();
+  }
+
+  private loadCourses(): void {
     this.coursesService.getCourses(1, 20).subscribe({
-      next: (value) => {
-        this.coursesArr = value;
-        console.log(value);
+      next: (courses: ICourse[]) => {
+        this.coursesArr = courses;
+        console.log(courses);
       },
       error: (err) => {
-        console.error(err);
+        console.error('Kurslar alınırken hata:', err);
       }
     });
+  }
 
-}
 }

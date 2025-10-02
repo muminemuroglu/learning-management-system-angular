@@ -26,13 +26,13 @@ export class CoursesService {
 }
 
 //Belirli bir kursu ID'sine göre getirme
-courseById(id:string|number): Observable<ICourse> {
+courseById(id:string): Observable<ICourse> {
   const url=`${userUrl.courses}/${id}`;
   return this.http.get<ICourse>(url);
 }
 
 //Belirli bir eğitmenin kurslarını getirme
-getCourserByInstructor(instructorId:number): Observable<ICourse[]> {
+getCourserByInstructor(instructorId:string): Observable<ICourse[]> {
    const url=`${userUrl.courses}?instructorId=${instructorId}`;
   return this.http.get<ICourse[]>(url);
 }
@@ -43,7 +43,7 @@ addCourse(courseData: ICourseCreate): Observable<ICourse> {
 }
 
 //Kurs silme
-deleteCourse(courseId:number|string):Observable<any>{
+deleteCourse(courseId:string):Observable<any>{
   const url=`${userUrl.courses}/${courseId}`;
   return this.http.delete(url);
 }
@@ -60,7 +60,7 @@ getLessons(page: number, per_page: number) {
   return this.http.get<ILesson[]>(userUrl.lessons, { params });
 }
 //Belirli bir kursa ait dersleri getirme
- getLessonsByCourse(courseId: number|string): Observable<ILesson[]> {
+ getLessonsByCourse(courseId: string): Observable<ILesson[]> {
   return this.http.get<ILesson[]>(`${userUrl.lessons}?courseId=${courseId}`);
 }
 
@@ -70,7 +70,7 @@ addLesson(lessonData:ILessonCreate):Observable<ILesson>{
 
 }
 //Ders silme
-deleteLesson(lessonId:number):Observable<any>{
+deleteLesson(lessonId:string):Observable<any>{
   const url=`${userUrl.lessons}/${lessonId}`;
   return this.http.delete(url);
 }

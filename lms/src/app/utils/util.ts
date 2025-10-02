@@ -1,6 +1,6 @@
 export class Util {
-    
-    static username:string//Static yapmamın sebebi farklı componentlerde bu değere ulaşabilmek için
+     // Farklı componentlerde kullanıcı adını tutmak için static property
+    static username:string
     
     constructor() {
         Util.username = ''

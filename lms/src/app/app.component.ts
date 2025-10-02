@@ -20,8 +20,8 @@ export class AppComponent {
       }
     });
   }
-
-  isLoggedIn(): boolean {// Kullanıcının giriş yapıp yapmadığını kontrol eden yöntem
+// Kullanıcının giriş yapıp yapmadığını kontrol eden yöntem
+  isLoggedIn(): boolean {
     return !!localStorage.getItem('token');
   }
 }

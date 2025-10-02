@@ -13,7 +13,7 @@ import { FormsModule } from '@angular/forms';
   styleUrls: ['./instructor-dashboard.component.css']
 })
 export class InstructorDashboardComponent {
-  instructorId: number = Number(localStorage.getItem('userId')) || 0; // 🔹 merkezi ID alma
+  instructorId: string = localStorage.getItem('userId') ?? ''; // 🔹 merkezi ID alma
   coursesArr: ICourse[] = [];
   showDropdown = false;
   newCourseTitle = '';
@@ -55,7 +55,7 @@ constructor(private coursesService: CoursesService) {
     error: (err) => console.error('Kurs eklenirken hata oluştu:', err)
   });
 }
- deleteCourse(courseId: number|string) {
+ deleteCourse(courseId: string) {
     if (!confirm('Bu kursu silmek istediğinize emin misiniz?')) return;
 
     this.coursesService.deleteCourse(courseId).subscribe({

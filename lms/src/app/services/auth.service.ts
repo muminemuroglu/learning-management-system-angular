@@ -31,16 +31,16 @@ export class AuthService {
     };
     return this.http.post<IUser>(userUrl.users, sendObj);
   }
-
+// ID’ye göre kullanıcı profili
   userProfileById(): Observable<IUser> {
     const userId = localStorage.getItem('userId') ?? '';
     const url = `${userUrl.users}/${userId}`; 
     return this.http.get<IUser>(url);}
 
 
-
+// Kullanıcı profilini senkronize etme (hata durumunda null döner)
    userProfileSync(): Observable<IUser | null> {
-    return this.userProfileById().pipe( // 👈 Burası değiştirildi!
+    return this.userProfileById().pipe( 
       catchError(err => {
         console.error('User profile hatası:', err); 
         return of(null);

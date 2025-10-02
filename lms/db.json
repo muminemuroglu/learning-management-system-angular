@@ -33,7 +33,7 @@
       "name": "Mete Can",
       "email": "mete@mail.com",
       "password": "1234!Mete",
-      "role": "student"
+      "role": "instructor"
     }
   ],
   "courses": [
@@ -41,100 +41,63 @@
       "id": "1",
       "title": "Angular Başlangıç",
       "description": "Temel Angular konuları",
-      "instructorId": 2
+      "instructorId": "2",
+      "lessons": []
     },
     {
       "id": "2",
       "title": "React Temelleri",
       "description": "React ile ön yüz geliştirmeye giriş",
-      "instructorId": 2
+      "instructorId": "2",
+      "lessons": []
     },
     {
       "id": "3",
       "title": "Vue.js ile Modern Web",
       "description": "Vue.js temel ve ileri konular",
-      "instructorId": 4
+      "instructorId": "8192",
+      "lessons": []
     },
     {
       "id": "4",
       "title": "Node.js API Geliştirme",
       "description": "Backend API geliştirme Node.js ile",
-      "instructorId": 5
+      "instructorId": "8192",
+      "lessons": []
     },
     {
       "id": "5",
       "title": "TypeScript ile Güçlü Kodlama",
       "description": "TypeScript kullanarak güvenli ve tipli kod yazma",
-      "instructorId": 2
-    },
-    {
-      "id": "6",
-      "title": "Python ile Veri Analizi",
-      "description": "Pandas ve NumPy kullanarak veri analizi",
-      "instructorId": 6
-    },
-    {
-      "id": "7",
-      "title": "Java ile Nesne Yönelimli Programlama",
-      "description": "Java OOP kavramları ve uygulamaları",
-      "instructorId": 7
-    },
-    {
-      "id": "8",
-      "title": "C# ve .NET Core",
-      "description": "C# ile modern uygulama geliştirme",
-      "instructorId": 8
-    },
-    {
-      "id": "9",
-      "title": "SQL ve Veritabanı Yönetimi",
-      "description": "SQL sorguları ve veri tabanı tasarımı",
-      "instructorId": 9
-    },
-    {
-      "id": "10",
-      "title": "Frontend Framework Karşılaştırmaları",
-      "description": "Angular, React, Vue.js arasındaki farklar",
-      "instructorId": 3
-    },
-    {
-      "id": "11",
-      "title": "RESTful API Tasarımı",
-      "description": "REST standartlarına uygun API geliştirme",
-      "instructorId": 5
-    },
-    {
-      "id": "12",
-      "title": "DevOps Temelleri",
-      "description": "CI/CD ve bulut ortamlarında uygulama dağıtımı",
-      "instructorId": 10
+      "instructorId": "2",
+      "lessons": []
     },
     {
       "id": "a131",
-      "instructorId": 2,
       "title": "Resim",
       "description": "Karekalem",
+      "instructorId": "2",
       "lessons": []
     },
     {
       "id": "6827",
-      "instructorId": 2,
       "title": "Matematik",
       "description": "1.Sınıf Matematik",
+      "instructorId": "2",
       "lessons": []
     },
     {
       "id": "82bf",
-      "instructorId": 2,
       "title": "Sosyal bilgiler",
       "description": "1.Sınıf",
+      "instructorId": "2",
       "lessons": []
     }
   ],
   "lessons": [
     {
       "id": "1",
-      "courseId": 1,
+      "courseId": "1",
       "title": "Components Giriş",
       "videoUrl": "https://example.com/video1.mp4"
     },
@@ -167,47 +130,40 @@
       "courseId": "a131",
       "title": "Guaj Boya Teknikleri",
       "content": ""
-    },
-    {
-      "id": "a27c",
-      "courseId": "82bf",
-      "title": "Ülkemiz",
-      "content": "Türkiye'nin İklimi"
-    },
-    {
-      "id": "0a51",
-      "courseId": "2",
-      "title": "React1",
-      "content": ""
     }
   ],
   "enrollments": [
     {
       "id": "63b1",
       "userId": "1",
-      "courseId": 1
+      "courseId": "1"
     },
     {
       "id": "fcb4",
       "userId": "1",
-      "courseId": 2
+      "courseId": "2"
     },
     {
       "id": "5da3",
       "userId": "1",
-      "courseId": 3
+      "courseId": "3"
     },
     {
       "id": "c253",
       "userId": "c498",
-      "courseId": 1
+      "courseId": "1"
+    },
+    {
+      "id": "6923",
+      "userId": "1",
+      "courseId": "6827"
     }
   ],
   "comments": [
     {
       "id": "1",
-      "courseId": 1,
-      "userId": 1,
+      "courseId": "1",
+      "userId": "1",
       "text": "Çok faydalı bir ders!",
       "date": "2025-08-25"
     }

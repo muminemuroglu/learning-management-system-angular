@@ -15,24 +15,21 @@ export class NavbarComponent implements OnInit {
   navbarUserName = ''
   role: string | null = null
 
-  constructor(private authService: AuthService,private router:Router,private cdr:ChangeDetectorRef) {
-    
-     
-}
-   ngOnInit(): void {
-  this.role = localStorage.getItem('userRole');
-  setTimeout(() => {
-    this.navbarUserName = Util.username;
-    this.cdr.detectChanges();//UI güncellemesi için
-  }, 100); // 100ms sonra username büyük ihtimalle set edilmiş olur
-}
+  constructor(private authService: AuthService,private router:Router,private cdr:ChangeDetectorRef) {}
 
-  logout():void{
-    localStorage.clear();
-    this.router.navigate(['/']);
-    this.cdr.detectChanges();
-    
-  }
+   ngOnInit(): void {
+      this.role = localStorage.getItem('userRole');
+          setTimeout(() => {
+              this.navbarUserName = Util.username;
+              this.cdr.detectChanges();//UI güncellemesi için
+      }, 100); // 100ms sonra username büyük ihtimalle set edilmiş olur
+    }
+
+    logout():void{
+        localStorage.clear();
+        this.router.navigate(['/']);
+        this.cdr.detectChanges();
+     }
 
 }
 

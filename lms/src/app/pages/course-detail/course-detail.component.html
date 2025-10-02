@@ -1,15 +1,11 @@
 <div class="course-detail-container p-4 max-w-4xl mx-auto">
 
-  <!-- Kurs Başlığı ve Açıklama -->
   <h1 class="text-3xl font-bold mb-2">{{course?.title}} </h1>
   <p class="text-gray-700 mb-4">{{course?.description}}.</p>
 
-  
-
-  @if(role=== 'instructor'){
+  @if(role === 'instructor'&& canAddLesson){
     
     <button (click)="showDropdown = !showDropdown" class="btn btn-primary">Ders Ekle</button>
-    <!-- Dropdown Paneli -->
     @if(showDropdown){
       <div class="dropdown-panel mt-2 p-4 border rounded bg-light">
         <input [(ngModel)]="newLessonTitle" placeholder="Ders Başlığı" class="m-2" />
@@ -18,17 +14,15 @@
         <button (click)="showDropdown = false" class="btn btn-secondary">İptal</button>
       </div>
     }
-  }
-  @else{
-   @if(!isEnrolled) {
-    <button class="btn btn-primary">Kursa Katıl</button>
-  }
-  @else {
-    <div class="text-green-600 font-semibold">✅ Bu kursa zaten kayıtlısınız</div>
-  }
-  }
+  } 
   
-
+  @else if (role === 'student') { 
+    @if(isEnrolled) {
+      <div class="text-green-600 font-semibold">✅ Bu kursa zaten kayıtlısınız</div>
+    } @else {
+      <button (click)="joinCourse()" class="btn btn-primary">Kursa Katıl</button>
+    }
+  }
   <h2 class="text-2xl font-semibold mb-2 mt-4">Dersler</h2>
 
   <ul>
@@ -41,7 +35,6 @@
               <p class="text-gray-600 text-sm">{{ lesson.content }}</p>
             </div>
 
-            <!-- Eğitmen için butonlar -->
             @if(role=== 'instructor') {
               <div class="flex gap-2">
                 <button (click)="startEditing(lesson)" class="btn btn-success m-1">Düzenle</button>
@@ -50,7 +43,6 @@
             }
           </div>
 
-          <!-- Dropdown Panel: Dersi Düzenle -->
           @if(editingLesson?.id === lesson.id) {
             <div class="dropdown-panel mt-2 p-4 border rounded bg-light">
               <input [(ngModel)]="editedLessonTitle" placeholder="Ders Başlığı" class="m-2" />

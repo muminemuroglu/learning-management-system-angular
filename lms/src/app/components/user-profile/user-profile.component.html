@@ -1,16 +1,24 @@
 @if (user) {
-  <div class="bg-white p-4 rounded shadow space-y-4">
-    <h3 class="text-lg font-semibold">👤 Kullanıcı Bilgileri</h3>
+  <div class="bg-white p-4 rounded shadow space-y-4 max-w-md mx-auto">
+    <h3 class="text-lg font-semibold mb-3">👤 Kullanıcı Bilgileri</h3>
 
-    <label class="block">Ad:</label>
-    <input type="text" [(ngModel)]="updatedName" class="border p-2 rounded w-full" />
+    <div class="mb-3">
+      <label class="form-label">Ad:</label>
+      <input type="text" [(ngModel)]="updatedName" class="form-control" placeholder="Adınızı girin" />
+    </div>
 
-    <label class="block">Email:</label>
-    <input type="email" [(ngModel)]="updatedEmail" class="border p-2 rounded w-full" />
-    <label class="block">Şifre:</label>
-    <input type="password" [(ngModel)]="updatedPassword" class="border p-2 rounded w-full" />
-    <button (click)="updateUser()" class="btn btn-primary">Güncelle</button>
+    <div class="mb-3">
+      <label class="form-label">Email:</label>
+      <input type="email" [(ngModel)]="updatedEmail" class="form-control" placeholder="Email girin" />
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Şifre (isteğe bağlı):</label>
+      <input type="password" [(ngModel)]="updatedPassword" class="form-control" placeholder="Yeni şifre" />
+    </div>
+
+    <button (click)="updateUser()" class="btn btn-primary w-full">Güncelle</button>
   </div>
 } @else {
-  <p class="text-gray-500">Kullanıcı bilgileri yükleniyor...</p>
+  <p class="text-gray-500 text-center">Kullanıcı bilgileri yükleniyor...</p>
 }

@@ -42,7 +42,9 @@ export class RegisterComponent {
   userRegister() {
     this.error = ''; // Hata mesajını sıfırla.
     this.success = ''; // Başarı mesajını sıfırla.
+
      const nameData = nameSurnameValid(this.name)
+
     if(nameData === ''){
       this.error = 'Name / Surname not valid!';
       this.nameRef!.nativeElement.focus(); // nameRef'e odaklan.
@@ -57,7 +59,8 @@ export class RegisterComponent {
       this.passwordAgainRef!.nativeElement.focus();
     }else{
       this.name = nameData;
-      this.authService.userRegister(this.name, this.email, this.password, ).subscribe({
+
+      this.authService.userRegister(this.name, this.email, this.password).subscribe({
         next:(res) => {
           this.success = 'Registration successful!';
 

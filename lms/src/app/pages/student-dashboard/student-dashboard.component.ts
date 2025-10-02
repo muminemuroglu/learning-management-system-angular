@@ -18,10 +18,8 @@ export class StudentDashboardComponent {
   enrolledCourses: ICourse[] = [];
   role: string | null = localStorage.getItem('userRole');
 
-  constructor(
-  private authService: AuthService,
-  private enrollmentsService: EnrollmentsService
-) {
+  constructor(private authService: AuthService,private enrollmentsService: EnrollmentsService) {
+
   const userId = localStorage.getItem('userId');
 
   if (userId) {
@@ -36,7 +34,6 @@ export class StudentDashboardComponent {
     // 🔹 Kayıtlı kursları çek
     this.enrollmentsService.getCoursesByStudentId(userId).subscribe({
       next: (value) => {
-        console.log(value)
         this.enrolledCourses = value;
       },
       error: (err) => {

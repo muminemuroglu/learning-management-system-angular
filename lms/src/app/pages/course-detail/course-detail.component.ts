@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common';
+import { CommonModule, LOCATION_INITIALIZED } from '@angular/common';
 
 import { CoursesService } from '../../services/courses.service';
 import { EnrollmentsService } from '../../services/enrollments.service';
@@ -29,6 +29,7 @@ export class CourseDetailComponent implements OnInit {
   editedLessonContent: string = '';
 
   isEnrolled: boolean = false;
+  canAddLesson: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -39,7 +40,7 @@ export class CourseDetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
-      const courseId = Number(params['id']);
+      const courseId : string = params['id'];
       if (!courseId) {
         alert("Invalid course ID provided.");
         this.router.navigate(['/home']);
@@ -50,21 +51,27 @@ export class CourseDetailComponent implements OnInit {
     });
   }
 
-  private loadCourseDetails(courseId: number): void {
+  private loadCourseDetails(courseId: string): void {
     this.coursesService.courseById(courseId).subscribe({
       next: course => {
         this.course = course;
         this.role = localStorage.getItem('userRole');
 
-        const userId = Number(localStorage.getItem('userId'));
-        this.enrollmentsService.isStudentEnrolled(userId, course.id).subscribe({
-          next: enrolled => this.isEnrolled = enrolled,
-          error: err => console.error('Kayıt kontrolü hatası:', err)
-        });
+         // 🔹 Eğitmenin kendi kursu mu kontrol et
+            const currentUserId = localStorage.getItem('userId') ?? '';
+            this.canAddLesson = (course.instructorId.toString() === currentUserId);
+
+        // Öğrenci kayıt kontrolü
+          this.enrollmentsService.isStudentEnrolled(currentUserId, course.id).subscribe({
+            next: enrolled => this.isEnrolled = enrolled,
+            error: err => console.error('Kayıt kontrolü hatası:', err)
+          });
 
         this.coursesService.getLessonsByCourse(course.id).subscribe({
-          next: lessons => this.lessons = lessons,
-          error: err => console.error('Lessons not found:', err)
+          next: lessons => 
+            this.lessons = lessons,
+          error: err => 
+            console.error('Lessons not found:', err)
         });
       },
       error: err => {
@@ -94,7 +101,7 @@ export class CourseDetailComponent implements OnInit {
     });
   }
 
-  deleteLesson(lessonId: number): void {
+  deleteLesson(lessonId: string): void {
     if (!confirm('Bu dersi silmek istediğinize emin misiniz?')) return;
 
     this.coursesService.deleteLesson(lessonId).subscribe({
@@ -135,4 +142,23 @@ export class CourseDetailComponent implements OnInit {
       error: err => console.error('Ders güncellenirken hata oluştu:', err)
     });
   }
+ 
+  joinCourse():void{
+    if(!this.course)return;
+
+    const userId=localStorage.getItem('userId') ?? '';
+    const courseId: string = this.course.id;
+
+    this.enrollmentsService.enrollInCourse(userId,courseId).subscribe({
+      next:()=>{
+        this.isEnrolled=true;
+        alert('Kursa başarıyla katldınız!')
+      },
+      error:err=>{
+        console.error('Kursa kayıt olurken hata:' ,err)
+        alert('Kursa kayıt başarısız oldu.')
+      }
+    })
+  }
+
 }
