@@ -23,7 +23,7 @@ coursesArr: ICourse[] = [];
   }
 
   ngOnInit(): void {
-    this.coursesService.getCourses(1, 15).subscribe({
+    this.coursesService.getCourses(1, 20).subscribe({
       next: (value) => {
         this.coursesArr = value;
         console.log(value);

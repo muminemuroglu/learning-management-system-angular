@@ -1,82 +1,138 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+
 import { CoursesService } from '../../services/courses.service';
+import { EnrollmentsService } from '../../services/enrollments.service';
+
 import { ICourse } from '../../models/ICourses';
 import { ILesson } from '../../models/ILessons';
-import { FormsModule } from '@angular/forms';
-import { Util } from '../../utils/util';
 
 @Component({
   selector: 'app-course-detail',
-  imports: [FormsModule],
+  imports: [FormsModule, CommonModule],
   templateUrl: './course-detail.component.html',
-  styleUrl: './course-detail.component.css'
+  styleUrls: ['./course-detail.component.css']
 })
-export class CourseDetailComponent {
-
+export class CourseDetailComponent implements OnInit {
   course: ICourse | null = null;
   lessons: ILesson[] = [];
   role: string | null = null;
   newLessonTitle: string = '';
   newLessonContent: string = '';
   showDropdown = false;
-  
+  instructor: { name: string } | null = null;
 
-  constructor(private route: ActivatedRoute, private coursesService: CoursesService, private router: Router) { 
+  editingLesson: ILesson | null = null;
+  editedLessonTitle: string = '';
+  editedLessonContent: string = '';
 
+  isEnrolled: boolean = false;
+
+  constructor(
+    private route: ActivatedRoute,
+    private coursesService: CoursesService,
+    private enrollmentsService: EnrollmentsService,
+    private router: Router
+  ) {}
+
+  ngOnInit(): void {
     this.route.params.subscribe(params => {
-      
-      // ID'yi direkt string olarak alıyoruz (örneğin '1' veya 'a131')
-      const courseId = params['id'];
-      if (courseId) {
-        this.coursesService.courseById(courseId).subscribe({
-          next: value => {
-            this.course = value;
-            this.role = localStorage.getItem('userRole');
-            
-
-            // Dersleri çek
-            this.coursesService.getLessonsByCourse(value.id).subscribe({
-              next: lessonValue => {
-                this.lessons = lessonValue;
-              },
-              error: err => {
-                console.error('Lessons not found:', err);
-              }
-            });
-
-          },
-          error: err => {
-            // Kurs bulunamazsa hata mesajı verilir ve yönlendirme yapılır
-            alert("Course not found: " + courseId);
-            this.router.navigate(['/home']);
-          }
-        });
-      } else {
-        // Parametrede ID yoksa
+      const courseId = Number(params['id']);
+      if (!courseId) {
         alert("Invalid course ID provided.");
+        this.router.navigate(['/home']);
+        return;
+      }
+
+      this.loadCourseDetails(courseId);
+    });
+  }
+
+  private loadCourseDetails(courseId: number): void {
+    this.coursesService.courseById(courseId).subscribe({
+      next: course => {
+        this.course = course;
+        this.role = localStorage.getItem('userRole');
+
+        const userId = Number(localStorage.getItem('userId'));
+        this.enrollmentsService.isStudentEnrolled(userId, course.id).subscribe({
+          next: enrolled => this.isEnrolled = enrolled,
+          error: err => console.error('Kayıt kontrolü hatası:', err)
+        });
+
+        this.coursesService.getLessonsByCourse(course.id).subscribe({
+          next: lessons => this.lessons = lessons,
+          error: err => console.error('Lessons not found:', err)
+        });
+      },
+      error: err => {
+        alert("Course not found: " + courseId);
         this.router.navigate(['/home']);
       }
     });
   }
 
-  addLesson() {
+  addLesson(): void {
     if (!this.newLessonTitle.trim() || !this.course) return;
 
-    const newLesson: Omit<ILesson, 'id'> = { // id yok, JSON-server atıyor
+    const newLesson: Omit<ILesson, 'id'> = {
       courseId: this.course.id,
       title: this.newLessonTitle,
       content: this.newLessonContent
     };
 
     this.coursesService.addLesson(newLesson).subscribe({
-      next: (createdLesson) => {
-        this.lessons.push(createdLesson); // id artık number
+      next: createdLesson => {
+        this.lessons.push(createdLesson);
         this.newLessonTitle = '';
         this.newLessonContent = '';
         this.showDropdown = false;
       },
-      error: (err) => console.error('Ders eklenirken hata oluştu:', err)
-    }); 
-}
+      error: err => console.error('Ders eklenirken hata oluştu:', err)
+    });
+  }
+
+  deleteLesson(lessonId: number): void {
+    if (!confirm('Bu dersi silmek istediğinize emin misiniz?')) return;
+
+    this.coursesService.deleteLesson(lessonId).subscribe({
+      next: () => {
+        this.lessons = this.lessons.filter(lesson => lesson.id !== lessonId);
+      },
+      error: err => console.error('Ders silinirken hata oluştu:', err)
+    });
+  }
+
+  startEditing(lesson: ILesson): void {
+    this.editingLesson = lesson;
+    this.editedLessonTitle = lesson.title;
+    this.editedLessonContent = lesson.content;
+  }
+
+  cancelEditing(): void {
+    this.editingLesson = null;
+    this.editedLessonTitle = '';
+    this.editedLessonContent = '';
+  }
+
+  saveEdits(): void {
+    if (!this.editingLesson) return;
+
+    const updatedLesson: ILesson = {
+      ...this.editingLesson,
+      title: this.editedLessonTitle,
+      content: this.editedLessonContent
+    };
+
+    this.coursesService.updateLesson(updatedLesson).subscribe({
+      next: lesson => {
+        const index = this.lessons.findIndex(l => l.id === lesson.id);
+        if (index !== -1) this.lessons[index] = lesson;
+        this.cancelEditing();
+      },
+      error: err => console.error('Ders güncellenirken hata oluştu:', err)
+    });
+  }
 }

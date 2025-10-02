@@ -8,3 +8,5 @@ export interface ICourse {
   lessons?: ILesson[];
   
 }
+// Kurs ekleme (POST) işlemi için ID'yi dışlayan tip
+export type ICourseCreate = Omit<ICourse, 'id'>;

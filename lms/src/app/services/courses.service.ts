@@ -2,9 +2,9 @@ import { Injectable } from '@angular/core';
 
 import { userUrl } from '../utils/apiUrl';
 import { HttpClient } from '@angular/common/http';
-import { ICourse } from '../models/ICourses';
+import { ICourse, ICourseCreate } from '../models/ICourses';
 import { Observable } from 'rxjs';
-import { ILesson } from '../models/ILessons';
+import { ILesson, ILessonCreate } from '../models/ILessons';
 
 @Injectable({
   providedIn: 'root'
@@ -26,7 +26,7 @@ export class CoursesService {
 }
 
 //Belirli bir kursu ID'sine göre getirme
-courseById(id:string): Observable<ICourse> {
+courseById(id:string|number): Observable<ICourse> {
   const url=`${userUrl.courses}/${id}`;
   return this.http.get<ICourse>(url);
 }
@@ -38,7 +38,7 @@ getCourserByInstructor(instructorId:number): Observable<ICourse[]> {
 }
 
 //Yeni kurs ekleme
-addCourse(courseData: Omit<ICourse, 'id'>): Observable<ICourse> {
+addCourse(courseData: ICourseCreate): Observable<ICourse> {
   return this.http.post<ICourse>(userUrl.courses, courseData);
 }
 
@@ -65,7 +65,7 @@ getLessons(page: number, per_page: number) {
 }
 
 //Yeni ders ekleme
-addLesson(lessonData:ILesson):Observable<ILesson>{
+addLesson(lessonData:ILessonCreate):Observable<ILesson>{
   return this.http.post<ILesson>(userUrl.lessons,lessonData);
 
 }
@@ -73,10 +73,13 @@ addLesson(lessonData:ILesson):Observable<ILesson>{
 deleteLesson(lessonId:number):Observable<any>{
   const url=`${userUrl.lessons}/${lessonId}`;
   return this.http.delete(url);
+}
 
-
+//Ders güncelleme
+updateLesson(lessonData: ILesson): Observable<ILesson> {
+  const url = `${userUrl.lessons}/${lessonData.id}`;
+  // Tam nesneyi güncellemek için PUT kullanıyoruz.
+  return this.http.put<ILesson>(url, lessonData);
 }
 
 }
-
-  

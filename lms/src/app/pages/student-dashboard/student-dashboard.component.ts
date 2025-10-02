@@ -36,6 +36,7 @@ export class StudentDashboardComponent {
     // 🔹 Kayıtlı kursları çek
     this.enrollmentsService.getCoursesByStudentId(userId).subscribe({
       next: (value) => {
+        console.log(value)
         this.enrolledCourses = value;
       },
       error: (err) => {

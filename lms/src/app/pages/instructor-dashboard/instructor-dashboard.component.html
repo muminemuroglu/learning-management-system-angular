@@ -12,7 +12,7 @@
           @for (course of coursesArr; track course.id) {
             <ul class="list-group">
                 <li class="list-group-item">{{ course.title }}
-                <button (click)="deleteCourse(course.id)" class="btn btn-secondary float-end me-2">Kursu Sil</button>
+                <button (click)="deleteCourse(course.id)" class="btn btn-danger float-end me-2">Kursu Sil</button>
                 <button class="btn btn-primary float-end" [routerLink]="['/course-detail', course.id]">Güncelle</button>
                 
                 </li>
@@ -25,7 +25,7 @@
           <!-- Kurs Ekle Butonu -->
             <button (click)="showDropdown = !showDropdown" class="btn btn-primary">Kurs Ekle</button>
 
-      <!-- Dropdown Paneli -->
+          <!-- Dropdown Paneli -->
           @if(showDropdown){
             <div class="dropdown-panel mt-2 p-4 border rounded bg-light">
             <input [(ngModel)]="newCourseTitle" placeholder="Kurs Başlığı" class="m-2" />

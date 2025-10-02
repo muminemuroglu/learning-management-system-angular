@@ -1,7 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { ICourse } from '../../models/ICourses';
 import { RouterModule } from '@angular/router';
-import { IUser } from '../../models/IUser';
 
 @Component({
   selector: 'app-course-item',
@@ -13,5 +12,6 @@ export class CourseItemComponent {
 
   @Input()
   item: ICourse | null = null;
+  
   
 }

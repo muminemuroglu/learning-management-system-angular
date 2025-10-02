@@ -122,6 +122,13 @@
       "title": "Matematik",
       "description": "1.Sınıf Matematik",
       "lessons": []
+    },
+    {
+      "id": "82bf",
+      "instructorId": 2,
+      "title": "Sosyal bilgiler",
+      "description": "1.Sınıf",
+      "lessons": []
     }
   ],
   "lessons": [
@@ -142,12 +149,57 @@
       "courseId": "a131",
       "title": "Yağlı Boya",
       "content": "Yağlı Boya Teknikleri"
+    },
+    {
+      "id": "29b8",
+      "courseId": "6827",
+      "title": "Doğal Sayılar",
+      "content": ""
+    },
+    {
+      "id": "7488",
+      "courseId": "6827",
+      "title": "Üslü Sayılar",
+      "content": ""
+    },
+    {
+      "id": "dd84",
+      "courseId": "a131",
+      "title": "Guaj Boya Teknikleri",
+      "content": ""
+    },
+    {
+      "id": "a27c",
+      "courseId": "82bf",
+      "title": "Ülkemiz",
+      "content": "Türkiye'nin İklimi"
+    },
+    {
+      "id": "0a51",
+      "courseId": "2",
+      "title": "React1",
+      "content": ""
     }
   ],
   "enrollments": [
     {
-      "id": "1",
-      "userId": 1,
+      "id": "63b1",
+      "userId": "1",
+      "courseId": 1
+    },
+    {
+      "id": "fcb4",
+      "userId": "1",
+      "courseId": 2
+    },
+    {
+      "id": "5da3",
+      "userId": "1",
+      "courseId": 3
+    },
+    {
+      "id": "c253",
+      "userId": "c498",
       "courseId": 1
     }
   ],
