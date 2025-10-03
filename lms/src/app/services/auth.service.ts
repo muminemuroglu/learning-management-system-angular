@@ -22,12 +22,12 @@ export class AuthService {
     });
   }
 
-  userRegister(name: string, email: string, password: string): Observable<IUser> {
+  userRegister(name: string, email: string, password: string,role:string): Observable<IUser> {
     const sendObj = {
       name: name,
       email: email,
       password: password,
-      role: 'student'
+      role: role
     };
     return this.http.post<IUser>(userUrl.users, sendObj);
   }

@@ -34,6 +34,13 @@
       "email": "mete@mail.com",
       "password": "1234!Mete",
       "role": "instructor"
+    },
+    {
+      "id": "f5f9",
+      "name": "Tarkan Muroğlu",
+      "email": "tarkan@mail.com",
+      "password": "1234!tarkan",
+      "role": "instructor"
     }
   ],
   "courses": [
@@ -178,6 +185,13 @@
       "courseId": "1",
       "userId": "c498",
       "text": "Kurs bitti..."
+    },
+    {
+      "id": "54b1",
+      "courseId": "1",
+      "userId": "1",
+      "text": "kurs tekrar başlasın..",
+      "date": "2025-10-03T13:55:25.830Z"
     }
   ]
 }
