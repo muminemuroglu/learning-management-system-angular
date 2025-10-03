@@ -15,27 +15,28 @@ export class CoursesService {
   constructor(private http: HttpClient) { }
 
                           /**Kurslar Metodları */
-//Tüm kursları getirme
-  getCourses(page: number, per_page: number) {
-  const params = {
-    _page: page,
-    _limit: per_page
-  };
 
-  return this.http.get<ICourse[]>(userUrl.courses, { params });
-}
+//Tüm kursları getirme
+    getCourses(page: number, per_page: number) {
+    const params = {
+      _page: page,
+      _limit: per_page
+    };
+
+    return this.http.get<ICourse[]>(userUrl.courses, { params });
+  }
 
 //Belirli bir kursu ID'sine göre getirme
-courseById(id:string): Observable<ICourse> {
-  const url=`${userUrl.courses}/${id}`;
-  return this.http.get<ICourse>(url);
-}
+    courseById(id:string): Observable<ICourse> {
+      const url=`${userUrl.courses}/${id}`;
+      return this.http.get<ICourse>(url);
+    }
 
 //Belirli bir eğitmenin kurslarını getirme
-getCourserByInstructor(instructorId:string): Observable<ICourse[]> {
-   const url=`${userUrl.courses}?instructorId=${instructorId}`;
-  return this.http.get<ICourse[]>(url);
-}
+    getCourserByInstructor(instructorId:string): Observable<ICourse[]> {
+      const url=`${userUrl.courses}?instructorId=${instructorId}`;
+      return this.http.get<ICourse[]>(url);
+    }
 
 //Yeni kurs ekleme
 addCourse(courseData: ICourseCreate): Observable<ICourse> {

@@ -56,16 +56,12 @@ export class AuthService {
   return this.http.patch(`${userUrl.users}/${id}`, { password: newPassword });
   }
 
+  // 🔹 Tüm kullanıcıları getiren metod
+  getAllUsers(): Observable<IUser[]> {
+    return this.http.get<IUser[]>(userUrl.users);
+  }
 
 
-
-
-
-
-/** userProfileSync(id: number): Observable<IUser> {
-    const url = `${userUrl.users}/${id}`;
-    return this.http.get<IUser>(url).pipe()
- }*/
   
 
 }

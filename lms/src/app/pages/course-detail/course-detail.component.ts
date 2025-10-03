@@ -8,10 +8,11 @@ import { EnrollmentsService } from '../../services/enrollments.service';
 
 import { ICourse } from '../../models/ICourses';
 import { ILesson } from '../../models/ILessons';
+import { CommentsComponent } from '../../components/comments/comments.component';
 
 @Component({
   selector: 'app-course-detail',
-  imports: [FormsModule, CommonModule],
+  imports: [FormsModule, CommonModule,CommentsComponent],
   templateUrl: './course-detail.component.html',
   styleUrls: ['./course-detail.component.css']
 })

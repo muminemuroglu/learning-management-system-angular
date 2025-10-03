@@ -166,6 +166,18 @@
       "userId": "1",
       "text": "Çok faydalı bir ders!",
       "date": "2025-08-25"
+    },
+    {
+      "id": "0f98",
+      "courseId": "1",
+      "userId": "1",
+      "text": "Kurs çok öğreticiydi!!"
+    },
+    {
+      "id": "2488",
+      "courseId": "1",
+      "userId": "c498",
+      "text": "Kurs bitti..."
     }
   ]
 }
