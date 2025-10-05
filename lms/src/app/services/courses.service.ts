@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
 import { userUrl } from '../utils/apiUrl';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient} from '@angular/common/http';
 import { ICourse, ICourseCreate } from '../models/ICourses';
 import { Observable } from 'rxjs';
 import { ILesson, ILessonCreate } from '../models/ILessons';
@@ -17,14 +17,10 @@ export class CoursesService {
                           /**Kurslar Metodları */
 
 //Tüm kursları getirme
-    getCourses(page: number, per_page: number) {
-    const params = {
-      _page: page,
-      _limit: per_page
-    };
+   getAllCourses(): Observable<ICourse[]> {
+  return this.http.get<ICourse[]>(userUrl.courses);
+}
 
-    return this.http.get<ICourse[]>(userUrl.courses, { params });
-  }
 
 //Belirli bir kursu ID'sine göre getirme
     courseById(id:string): Observable<ICourse> {
@@ -52,7 +48,7 @@ deleteCourse(courseId:string):Observable<any>{
                             /**Dersler Metodları */
 
 
-//Bu fonksiyon şimdilik dursun
+
 getLessons(page: number, per_page: number) {
    const params = {
     _page: page,
@@ -65,22 +61,21 @@ getLessons(page: number, per_page: number) {
   return this.http.get<ILesson[]>(`${userUrl.lessons}?courseId=${courseId}`);
 }
 
-//Yeni ders ekleme
+//Yeni ders ekleme metodu
 addLesson(lessonData:ILessonCreate):Observable<ILesson>{
   return this.http.post<ILesson>(userUrl.lessons,lessonData);
 
 }
-//Ders silme
+//Ders silme metodu
 deleteLesson(lessonId:string):Observable<any>{
   const url=`${userUrl.lessons}/${lessonId}`;
   return this.http.delete(url);
 }
 
-//Ders güncelleme
+//Ders güncelleme metodu
 updateLesson(lessonData: ILesson): Observable<ILesson> {
   const url = `${userUrl.lessons}/${lessonData.id}`;
-  // Tam nesneyi güncellemek için PUT kullanıyoruz.
-  return this.http.put<ILesson>(url, lessonData);
+  return this.http.put<ILesson>(url, lessonData);// Tam nesneyi güncellemek için PUT kullanıyoruz.
 }
 
 }

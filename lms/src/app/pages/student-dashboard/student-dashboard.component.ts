@@ -23,7 +23,7 @@ export class StudentDashboardComponent {
   const userId = localStorage.getItem('userId');
 
   if (userId) {
-    // 🔹 Kullanıcı bilgilerini çek
+    // Kullanıcı bilgilerini çek
     this.authService.userProfileSync().subscribe({
       next: (data) => {
         this.user = data;
@@ -31,7 +31,7 @@ export class StudentDashboardComponent {
       error: () => console.error('Kullanıcı bilgisi alınamadı')
     });
 
-    // 🔹 Kayıtlı kursları çek
+    // Kayıtlı kursları çek
     this.enrollmentsService.getCoursesByStudentId(userId).subscribe({
       next: (value) => {
         this.enrolledCourses = value;

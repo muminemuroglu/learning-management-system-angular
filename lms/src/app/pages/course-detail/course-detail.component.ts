@@ -58,7 +58,7 @@ export class CourseDetailComponent implements OnInit {
         this.course = course;
         this.role = localStorage.getItem('userRole');
 
-         // 🔹 Eğitmenin kendi kursu mu kontrol et
+         //  Eğitmenin kendi kursu mu kontrol et
             const currentUserId = localStorage.getItem('userId') ?? '';
             this.canAddLesson = (course.instructorId.toString() === currentUserId);
 

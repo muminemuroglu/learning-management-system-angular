@@ -5,8 +5,16 @@ export interface ICourse {
   title: string;        // Kurs adı
   description: string;  // Kurs açıklaması
   instructorId: string; // Eğitmen id'si (user tablosuna referans), string
+  image?: string;       // Kurs görseli URL'si (opsiyonel ama tavsiye edilir)
   lessons?: ILesson[];
 }
+export interface Pagination {
+  page: number;
+  per_page: number;
+  total_items: number;
+  total_pages: number;
+}
+
 
 // Kurs ekleme (POST) işlemi için ID'yi dışlayan tip
 export type ICourseCreate = Omit<ICourse, 'id'>;

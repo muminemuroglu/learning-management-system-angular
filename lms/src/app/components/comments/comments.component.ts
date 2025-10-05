@@ -51,8 +51,8 @@ export class CommentsComponent implements OnInit {
     next: (comments) => {
       this.commentsArr = comments.map(comment => ({
         ...comment,
-        // Yorum nesnesine 'authorName' ekleniyor
-        authorName: this.getUserName(comment.userId) 
+        
+        authorName: this.getUserName(comment.userId) // Yorum nesnesine 'authorName' ekleniyor
       }));
       
       this.cdr.detectChanges();

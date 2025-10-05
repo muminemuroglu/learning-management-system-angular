@@ -26,7 +26,7 @@ export class RegisterComponent {
   email = '';
   password = '';
   passwordAgain = '';
-  role = 'student';  // Opsiyonel, default "student"
+  role = 'student';  
 
   constructor(private router:Router,private authService: AuthService, private cdr: ChangeDetectorRef) {}
 
@@ -66,12 +66,6 @@ export class RegisterComponent {
       this.authService.userRegister(this.name, this.email, this.password,this.role).subscribe({
         next:(res) => {
           this.success = 'Registration successful!';
-
-          // ✅ Fake token üret(Burayı tekrar düşün)
-            //const fakeToken = Math.random().toString(36).substring(2);
-            //localStorage.setItem('token', fakeToken);
-            //localStorage.setItem('user', JSON.stringify(res));
-
           this.formReset();// Formu sıfırla.
           this.cdr.detectChanges()
          setTimeout(() => {
@@ -88,7 +82,7 @@ export class RegisterComponent {
     
   }
 
-   // resetfnc
+   // reset fonksiyonu
   formReset(){
     this.name = ''
     this.email = ''
@@ -96,7 +90,7 @@ export class RegisterComponent {
     this.passwordAgain = ''
     this.error = ''
   }
-  // password text lock and unlock
+  
   passwordLockUnLock() {
     this.passlock = !this.passlock
     this.passType = this.passlock === true ? 'text' : 'password'

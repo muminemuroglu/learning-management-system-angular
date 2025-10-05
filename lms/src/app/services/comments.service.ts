@@ -11,13 +11,13 @@ export class CommentsService {
 
   constructor(private http: HttpClient) {}
 
-  // İlgili kursa ait yorumları getir
+  // İlgili kursa ait yorumları getiren metod
   getCommentsByCourse(courseId: string): Observable<IComment[]> {
     const url = `${userUrl.comments}?courseId=${courseId}`;
     return this.http.get<IComment[]>(url);
   }
 
-  // Yorum ekle
+  // Yorum ekleme metodu
   addComment(commentData: ICommentCreate): Observable<IComment> {
     return this.http.post<IComment>(userUrl.comments,commentData)
   }

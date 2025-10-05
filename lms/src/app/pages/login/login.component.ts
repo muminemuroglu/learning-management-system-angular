@@ -24,6 +24,9 @@ export class LoginComponent {
   remember = false;
   error = '';
 
+  passlock = false; // Şifrenin görünürlüğünü kontrol eder.
+  passType ='password';// <input type="password"> ya da text olacak şekilde değiştirilir.
+
   userLogin() {
     this.error = '';
 
@@ -72,5 +75,11 @@ export class LoginComponent {
 
   validEmail() {
     console.log("Email Call", this.email);
+  }
+
+  // password text lock and unlock
+  passwordLockUnLock() {
+    this.passlock = !this.passlock
+    this.passType = this.passlock === true ? 'text' : 'password'
   }
 }

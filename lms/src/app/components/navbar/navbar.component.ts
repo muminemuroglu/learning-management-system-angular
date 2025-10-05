@@ -25,11 +25,11 @@ export class NavbarComponent implements OnInit {
       }, 100); // 100ms sonra username büyük ihtimalle set edilmiş olur
     }
 
-    logout():void{
-        localStorage.clear();
-        this.router.navigate(['/']);
-        this.cdr.detectChanges();
-     }
+    logout(): void {
+    localStorage.clear();
+    this.router.navigate(['/'], { replaceUrl: true }); // 🔹 replaceUrl ile geçmiş temizleniyor
+    this.cdr.detectChanges();
+}
 
 }
 

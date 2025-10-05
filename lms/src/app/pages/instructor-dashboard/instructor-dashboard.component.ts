@@ -47,7 +47,7 @@ constructor(private coursesService: CoursesService) {
 
   this.coursesService.addCourse(newCourse).subscribe({
     next: (createdCourse) => {
-      this.coursesArr.push(createdCourse); // id artık number
+      this.coursesArr.push(createdCourse); 
       this.newCourseTitle = '';
       this.newCourseDescription = '';
       this.showDropdown = false;

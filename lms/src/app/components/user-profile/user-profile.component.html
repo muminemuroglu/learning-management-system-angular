@@ -1,24 +1,55 @@
 @if (user) {
-  <div class="bg-white p-4 rounded shadow space-y-4 max-w-md mx-auto">
-    <h3 class="text-lg font-semibold mb-3">👤 Kullanıcı Bilgileri</h3>
+<!-- Success alert -->
+          @if (success !== '') {
+            <div class="alert alert-success" role="alert">
+              {{ success }}
+            </div>
+          }
 
+          <!-- Error alert -->
+          @if (error !== '') {
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+              <strong>Error</strong> {{ error }}
+              <button (click)="error = ''" type="button" class="btn-close" aria-label="Close"></button>
+            </div>
+          }
+  <div class="user-info-card shadow rounded p-4 mb-4">
+    <h3 class="text-primary mb-3 fw-bold d-flex align-items-center">
+      <i class="bi bi-person-circle me-2 fs-3"></i> Kullanıcı Bilgileri
+    </h3>
+
+    <!-- Ad -->
     <div class="mb-3">
-      <label class="form-label">Ad:</label>
-      <input type="text" [(ngModel)]="updatedName" class="form-control" placeholder="Adınızı girin" />
+      <label class="form-label fw-semibold">Ad:</label>
+      <input #nameRef type="text" [(ngModel)]="updatedName" class="form-control" placeholder="Adınızı girin" name="name" />
     </div>
 
+    <!-- Email -->
     <div class="mb-3">
-      <label class="form-label">Email:</label>
-      <input type="email" [(ngModel)]="updatedEmail" class="form-control" placeholder="Email girin" />
+      <label class="form-label fw-semibold">Email:</label>
+      <input #emailRef type="email" [(ngModel)]="updatedEmail" class="form-control" placeholder="Email girin"  name="email"/>
     </div>
 
+    <!-- Şifre -->
     <div class="mb-3">
-      <label class="form-label">Şifre:</label>
-      <input type="password" [(ngModel)]="updatedPassword" class="form-control" placeholder="Yeni şifre" />
-    </div>
+      <label class="form-label fw-semibold">Şifre:</label>
+      <div class="input-group">
+      <input #passwordRef type="{{passType}}" [(ngModel)]="updatedPassword" class="form-control" placeholder="Yeni şifre" name="password" />
+      <button (click)="passwordLockUnLock()" type="button" class="btn btn-outline-secondary">
+                  @if(passlock === false) {
+                    <i class="bi bi-unlock2"></i>
+                  }
+                  @else {
+                    <i class="bi bi-lock-fill"></i>
+                  }
+                </button>
+        </div>
+     </div>
 
-    <button (click)="updateUser()" class="btn btn-primary w-full">Güncelle</button>
+    <button (click)="updateUser()" class="btn btn-outline-primary w-100 fw-semibold">
+      <i class="bi bi-pencil-square me-1"></i> Güncelle
+    </button>
   </div>
 } @else {
-  <p class="text-gray-500 text-center">Kullanıcı bilgileri yükleniyor...</p>
+  <p class="text-center text-secondary mt-4">Kullanıcı bilgileri yükleniyor...</p>
 }

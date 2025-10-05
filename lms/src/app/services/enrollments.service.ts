@@ -14,7 +14,7 @@ export class EnrollmentsService {
   constructor(private http: HttpClient) { }
 
 
-  // Öğrencinin kayıtlı olduğu kursları getirme
+// Öğrencinin kayıtlı olduğu kursları getiren metod
 getCoursesByStudentId(userId: string ): Observable<ICourse[]> {
   return this.http.get<IEnrollment[]>(`${userUrl.enrollments}`).pipe(
     switchMap((enrollments: IEnrollment[]) => {
@@ -27,7 +27,7 @@ getCoursesByStudentId(userId: string ): Observable<ICourse[]> {
   );
 }
 
-//Kursa kaydolma
+//Kursa kaydolma metodu
 enrollInCourse(userId: string, courseId: string): Observable<IEnrollment> {
   const sendObj = {
      userId:userId, 
@@ -36,7 +36,7 @@ enrollInCourse(userId: string, courseId: string): Observable<IEnrollment> {
   return this.http.post<IEnrollment>(userUrl.enrollments, sendObj);
 }
 
-//Öğrenci kursa kayıtlı mı kontrol etme
+//Öğrenci kursa kayıtlı mı kontrol eden metod
 isStudentEnrolled(userId:string, courseId: string): Observable<boolean> {
   return this.http.get<IEnrollment[]>(`${userUrl.enrollments}`).pipe(
     map(enrollments =>
