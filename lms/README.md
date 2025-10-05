@@ -112,7 +112,7 @@ Kullanıcılar, derslere kayıt olabilir, içerikleri görüntüleyebilir ve der
   <img width="958" alt="product-list" src="screenshot/yorumlar.png" />
 --- 
 
-  <img width="958" alt="product-list" src="screenshot/yorumlar-ekranı-2.png" />
+  <img width="958" alt="yorumlar" src="screenshot/yorumlar-ekranı-1.png" />
 ---
 
 ## 🚀 Kurulum ve Çalıştırma
