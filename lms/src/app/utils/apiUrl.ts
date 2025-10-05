@@ -1,7 +1,5 @@
 export const baseURL = 'http://localhost:3001';
 
-
-
 export const userUrl = {
   users: `${baseURL}/users`,
   courses: `${baseURL}/courses`,
