@@ -81,16 +81,25 @@ export class UserProfileComponent implements OnInit {
         email: this.updatedEmail,
         password: this.updatedPassword
     };
-      this.authService.updateUser(this.user.id, updatedUser).subscribe({
-        next: () => {
-          this.success ='Bilgiler güncellendi!';
-          this.cdr.detectChanges();
-        },
-        error:()=>{
-          this.error='Güncelleme başarısız!';
-          this.cdr.detectChanges();
-        }
-      });
+       this.authService.updateUser(this.user.id, updatedUser).subscribe({
+    next: (res) => {
+      // Başarılı güncelleme sonrası component state güncelle
+      if(res) {
+        this.user = res;
+        this.updatedName = res.name;
+        this.updatedEmail = res.email;
+        this.updatedPassword = res.password;
+      }
+      this.success ='Bilgiler güncellendi!';
+      this.cdr.detectChanges();
+      setTimeout(() => this.success='', 2000);
+    },
+    error: () => {
+      this.error='Güncelleme başarısız!';
+      this.cdr.detectChanges();
+      setTimeout(() => this.error='', 2000);
+    }
+  });
     }
 
     // password text lock and unlock

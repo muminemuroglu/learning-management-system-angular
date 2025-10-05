@@ -4,6 +4,7 @@ export interface ICourse {
   id: string;           // Kursun benzersiz kimliği, artık string
   title: string;        // Kurs adı
   description: string;  // Kurs açıklaması
+  instructorName?:string;
   instructorId: string; // Eğitmen id'si (user tablosuna referans), string
   image?: string;       // Kurs görseli URL'si (opsiyonel ama tavsiye edilir)
   lessons?: ILesson[];

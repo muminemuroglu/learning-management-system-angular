@@ -1,59 +1,169 @@
-# Lms
+# 🎓 Angular Learning Management System
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.15.
+Bu proje, **Angular** kullanılarak geliştirilmiş bir **öğrenim yönetim sistemi (LMS) uygulamasıdır**.  
+Kullanıcılar, derslere kayıt olabilir, içerikleri görüntüleyebilir ve derslere yorum yapabilirler.  
 
-## Development server
+---
 
-To start a local development server, run:
+## 🎯 Proje Amacı
+
+* API veya dummy veriler üzerinden dersleri listelemek  
+* Her ders için **başlık**, **açıklama**, **eğitmen bilgisi** ve **kategori** göstermek  
+* Seçilen dersin detay sayfasında:
+  * **Ders açıklaması**, **içerikler** ve **yorumlar** bölümü  
+* Angular ile **HTTP istekleri**, **routing**, **component yapısı** ve **rol bazlı erişim** uygulamak
+
+---
+## 🔧 Kullanılan Teknolojiler
+
+* Angular 19.2.15,
+* TypeScript
+* HTML & CSS
+* Bootstrap / Bootstrap Icons
+* Backend: json-server
+* HttpClient, Angular Routing, Forms Validation, Route Guards
+
+---
+
+## 🧭 Uygulama Özellikleri
+
+
+### 🔹Kullanıcı Yönetimi
+
+  * Kayıt ol ve giriş yap ekranları
+
+  * LocalStorage ile token benzeri auth state tutulur
+
+  * Rol bilgisi (student / instructor) giriş sırasında alınır
+
+### 🔹 Role-Based Access Control (RBAC)
+
+  * Student: Kurs görüntüleme, kursa kayıt, yorum yapma
+
+  * Instructor: Kurs ve ders ekleme, düzenleme, silme
+
+  * Route Guard ile yetkisiz erişim engellenir
+
+### 🔹 Kurs ve Ders Yönetimi
+
+  * Tüm kullanıcılar kursları görüntüleyebilir
+
+  * Dersler kurs detay sayfasında listelenir
+
+  * Eğitmen kurs ve ders ekleyebilir, düzenleyebilir, silebilir
+
+### 🔹 Kursa Katılım (Enrollment)
+
+  * Öğrenciler kursa kayıt olabilir
+
+  * Kayıtlı kurslar profil sayfasında görüntülenir
+
+### 🔹 Yorum Sistemi
+
+  * Kurs detay sayfasında yorum ekleme ve görüntüleme
+
+### 🔹 UI / UX
+
+  * Angular Material veya Bootstrap kullanılmıştır
+
+  * Responsive ve modern tasarım
+---
+
+---
+
+## 👥 Örnek Kullanıcı Hesapları
+
+ | Rol        | Email                                         | Password |
+| ---------- | --------------------------------------------- | -------- |
+| Student    | [ahmet@example.com](mailto:ahmet@example.com) | 1234!Ahmet    |
+| Instructor | [ayse@mail.com](mailto:ayse@mail.com)  |1234!Ayşe    |
+
+---
+
+## 📸 Ekran Görüntüleri
+
+
+### 🖼️ Giriş Ekranı
+  <img width="958" alt="product-list" src="screenshot/login-ekranı.png" />
+  ---
+
+### 🖼️ Kayıt Ekranı
+  <img width="958" alt="product-list" src="screenshot/register-ekranı.png" />
+---
+
+### 🖼️ Anasayfa/Kurs Listesi
+<img width="958" alt="product-list" src="screenshot/kurs-listesi.png" />
+---
+
+### 🖼️ Öğrenci Paneli
+<img width="958" alt="product-list" src="screenshot/öğrenci-profil-ekranı.png" />
+---
+
+### 🖼️ Eğitmen Paneli
+<img width="958" alt="product-list" src="screenshot/eğitmen-profil-ekranı.png" />
+---
+
+### 🖼️ Kurs Detay
+
+<img width="958" alt="product-list" src="screenshot/kurs-detay-eğitmen.png" />
+---
+
+### 🖼️ Yorumlar
+  <img width="958" alt="product-list" src="screenshot/yorumlar-ekranı-1.png" />
+
+  <img width="958" alt="product-list" src="screenshot/yorumlar-ekranı-2.png" />
+---
+
+## 🚀 Kurulum ve Çalıştırma
+
+Projeyi yerel ortamında çalıştırmak için aşağıdaki adımları izle:
+
 
 ```bash
+# 1. Projeyi klonla
+git clone https://github.com/muminemuroglu/learning-management-system-angular.git
+
+# 2. Proje klasörüne gir
+cd learning-management-system-angular
+
+# 3. Bağımlılıkları yükle
+npm install
+
+# 4. Uygulamayı çalıştır
 ng serve
+
+# 5.Backend(JSON SERVER)
+json-server --watch db.json --port 3001
+
+# 6.Frontend
+npm install
+ng serve --port 4403
+
+
+➡️ Tarayıcıdan http://localhost:4403 adresine giderek projeyi görüntüleyebilirsin.
+
 ```
+---
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+## 📁 Proje Dosya Yapısı
 
-## Code scaffolding
+lms
+│
+├─ src/app/
+│   ├─ components/
+│   ├─ models/
+│   ├─ pages/
+│   ├─ services/
+│   ├─ utils/
+│   ├─ guards/
+│   └─ auth-guard.ts - role-guard.ts - notauth-guard.ts
+│
+├─ db.json
+├─ package.json
+└─ README.md
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+---
 
-```bash
-ng generate component component-name
-```
+## 📝 Lisans / License
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Bu proje MIT License ile lisanslanmıştır / This project is licensed under the MIT License.

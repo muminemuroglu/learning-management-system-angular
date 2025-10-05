@@ -3,10 +3,11 @@
   <!-- Kurs Başlığı -->
   <h1 class="text-primary fs-2 fw-bold mb-2">{{course?.title}}</h1>
   <p class="text-secondary mb-4">{{course?.description}}</p>
+ 
 
   <!-- Eğitmen Ders Ekleme -->
   @if (role === 'instructor' && canAddLesson) {
-    <button (click)="showDropdown = !showDropdown" class="btn btn-primary mb-3 fw-semibold">
+    <button (click)="showDropdown = !showDropdown" class="btn btn-outline-primary mb-3 fw-semibold">
       <i class="bi bi-plus-circle me-1"></i> Ders Ekle
     </button>
 
@@ -53,8 +54,8 @@
 
             @if (role === 'instructor'&& canAddLesson) {
               <div class="d-flex gap-2">
-                <button (click)="startEditing(lesson)" class="btn btn-success btn-sm fw-semibold">Düzenle</button>
-                <button (click)="deleteLesson(lesson.id)" class="btn btn-danger btn-sm fw-semibold">Sil</button>
+                <button (click)="startEditing(lesson)" class="btn btn-outline-success btn-sm fw-semibold">Düzenle</button>
+                <button (click)="deleteLesson(lesson.id)" class="btn btn-outline-danger btn-sm fw-semibold">Sil</button>
               </div>
             }
           </div>
